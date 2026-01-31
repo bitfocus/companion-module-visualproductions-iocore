@@ -1,0 +1,26 @@
+{
+	"id": "visualproductions-iocore",
+	"name": "visualproductions-iocore",
+	"shortname": "IoCore",
+	"description": "Module for controlling the Visual Productions IOCore device by sending commands over TCP",
+	"version": "0.0.0",
+	"license": "MIT",
+	"repository": "git+https://github.com/bitfocus/companion-module-visualproductions-iocore.git",
+	"bugs": "https://github.com/bitfocus/companion-module-visualproductions-iocore/issues",
+	"maintainers": [
+		{
+			"name": "Bryce Seifert",
+			"email": "bryce@bitfocus.io"
+		}
+	],
+	"legacyIds": [],
+	"runtime": {
+		"type": "node18",
+		"api": "nodejs-ipc",
+		"apiVersion": "0.0.0",
+		"entrypoint": "../dist/main.js"
+	},
+	"manufacturer": "Visual Productions",
+	"products": ["IoCore2"],
+	"keywords": ["GPIO", "relay", "tally"]
+}

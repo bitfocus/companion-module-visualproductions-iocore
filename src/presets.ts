@@ -107,7 +107,18 @@ export function setupPresets(instance: IoCoreInstance): void {
 					up: [],
 				},
 			],
-			feedbacks: [],
+			feedbacks: [
+				{
+					feedbackId: 'gpoState',
+					options: {
+						port: i,
+						state: 'On',
+					},
+					style: {
+						bgcolor: Color.green,
+					},
+				},
+			],
 		}
 		presets[`gpo_${i}_off`] = {
 			type: 'button',
@@ -134,7 +145,18 @@ export function setupPresets(instance: IoCoreInstance): void {
 					up: [],
 				},
 			],
-			feedbacks: [],
+			feedbacks: [
+				{
+					feedbackId: 'gpoState',
+					options: {
+						port: i,
+						state: 'Off',
+					},
+					style: {
+						bgcolor: Color.red,
+					},
+				},
+			],
 		}
 	}
 	instance.setPresetDefinitions(presets)

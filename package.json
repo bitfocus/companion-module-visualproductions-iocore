@@ -39,6 +39,10 @@
 			"yarn lint:raw --fix"
 		]
 	},
+	"engines": {
+		"node": "^22.20",
+		"yarn": "^4"
+	},
 	"prettier": "@companion-module/tools/.prettierrc.json",
 	"packageManager": "yarn@4.12.0"
 }

@@ -79,8 +79,24 @@ export class IoCoreInstance extends InstanceBase<ModuleConfig> {
 				this.log('info', 'Connected to IoCore')
 				this.sendMessage('core-hello')
 			})
-			this.client.on('data', (_data) => {
-				//console.log(data)
+			this.client.on('data', (data: Buffer) => {
+				const str = data.toString().trim()
+				let port: number | null = null
+				const gpiMatch = str.match(/gpi\s*[:=]?\s*(\d+)/i)
+				if (gpiMatch) {
+					port = parseInt(gpiMatch[1], 10)
+				} else {
+					const numMatch = str.match(/\b(\d+)\b/)
+					if (numMatch) {
+						port = parseInt(numMatch[1], 10)
+					}
+				}
+				const portNum = port !== null && port >= 1 && port <= 8 ? port : null
+				if (portNum !== null) {
+					this.state.gpi[portNum] = true
+					this.setVariableValues({ [`gpi_${portNum}`]: 'Off' })
+					this.checkFeedbacks('gpiState')
+				}
 			})
 		} else {
 			this.updateStatus(InstanceStatus.BadConfig, 'IoCore IP or Port is missing')
@@ -136,7 +152,7 @@ export class IoCoreInstance extends InstanceBase<ModuleConfig> {
 		if (this.config.targetIp) {
 			this.pollingInterval = setInterval(() => {
 				void this.pollStatus()
-			}, 1000)
+			}, 500)
 		}
 	}
 

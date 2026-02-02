@@ -82,6 +82,39 @@ export function setupPresets(instance: IoCoreInstance): void {
 	}
 
 	for (let i = 1; i <= 6; i++) {
+		presets[`gpi_${i}_on`] = {
+			type: 'button',
+			category: 'GPI',
+			name: 'GPI ' + i + ' On',
+			options: {},
+			style: {
+				text: 'GPI ' + i + ' On',
+				size: '14',
+				color: Color.white,
+				bgcolor: Color.black,
+			},
+			steps: [
+				{
+					down: [],
+					up: [],
+				},
+			],
+			feedbacks: [
+				{
+					feedbackId: 'gpiState',
+					options: {
+						port: i,
+						state: 'On',
+					},
+					style: {
+						bgcolor: Color.green,
+					},
+				},
+			],
+		}
+	}
+
+	for (let i = 1; i <= 6; i++) {
 		presets[`gpo_${i}_on`] = {
 			type: 'button',
 			category: 'GPO',

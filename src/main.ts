@@ -136,7 +136,7 @@ export class IoCoreInstance extends InstanceBase<ModuleConfig> {
 		if (this.config.targetIp) {
 			this.pollingInterval = setInterval(() => {
 				void this.pollStatus()
-			}, 1000)
+			}, 500)
 		}
 	}
 
